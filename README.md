@@ -113,8 +113,8 @@ Vulnerabilità, PoF e Exploit
 
     - agents(id:smallint, username: varchar, password: varchar) (inject_sql("(SELECT CONCAT(column_name, data_type) FROM information_schema.columns WHERE table_schema LIKE 'niadb' AND table_name LIKE 'agents' LIMIT 0, 1)"))
 
-- Reflected XSS (/welcome.php)
+- Reflected XSS (/welcome.php) (PoC non trovato perchè < e > sono nella blacklist)
 
 - Reflected XSS (/recovery.php) ( <script>alert(1)</script> )
 
-- Stored XSS (/report.php)
+- Stored XSS (/report.php) ( 123', '<script>alert(1)</script>')); # )
